@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "10"
+cache: npm
+branches:
+  only:
+  - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+before_script:
+  - npm install -g uglify-js
+  - chmod u+x ./build/*
+script:
+  - ./build/build_js.sh
+  - ./build/build_release.sh
+deploy:
+  - provider: releases
+    api-key: $GITHUB_TOKEN
+    file: ./dist.zip
+    skip-cleanup: true
+    on:
+      tags: true
