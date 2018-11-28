@@ -36,6 +36,21 @@ function user_fingerprint_log_insert()
 {
     global $_G;
 
+    if (!$_SERVER['HTTP_REFERER']) {
+        return [
+            'code' => 4,
+            'msg' => 'Empty referer.',
+        ];
+    }
+
+    $url_components = parse_url($_SERVER['HTTP_REFERER']);
+    if ($url_components['host'] !== $_SERVER['SERVER_NAME']) {
+        return [
+            'code' => 5,
+            'msg' => 'Invalid referer.',
+        ];
+    }
+
     $uid = (int)$_G['uid'];
     if ($uid <= 0) {
         return [

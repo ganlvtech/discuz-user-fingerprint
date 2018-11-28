@@ -14,7 +14,7 @@
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[user_fingerprint/]]></item>
 			<item id="copyright"><![CDATA[Ganlv (https://github.com/ganlvtech)]]></item>
-			<item id="version"><![CDATA[0.1.0.1]]></item>
+			<item id="version"><![CDATA[0.1.0.3]]></item>
 			<item id="__modules">
 				<item id="0">
 					<item id="name"><![CDATA[user_fingerprint]]></item>
@@ -43,13 +43,39 @@
 					<item id="navsuburl"><![CDATA[]]></item>
 				</item>
 				<item id="2">
-					<item id="name"><![CDATA[admin_user_fingerprint]]></item>
+					<item id="name"><![CDATA[admin_sid]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[Session ID]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="3">
+					<item id="name"><![CDATA[admin_fingerprint]]></item>
 					<item id="param"><![CDATA[]]></item>
 					<item id="menu"><![CDATA[用户指纹]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[3]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
-					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="displayorder"><![CDATA[3]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="4">
+					<item id="name"><![CDATA[admin_user]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[用户]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[4]]></item>
 					<item id="navtitle"><![CDATA[]]></item>
 					<item id="navicon"><![CDATA[]]></item>
 					<item id="navsubname"><![CDATA[]]></item>
