@@ -58,6 +58,6 @@ function main()
 
 $result = main();
 header('Content-Type: text/javascript; charset=UTF-8');
-// if (DISCUZ_DEBUG) {
+if (DISCUZ_DEBUG) {
     echo 'console.log(', json_encode($result), ');';
-// }
+}
