@@ -1,128 +1,63 @@
 <?php
 
+namespace Ganlv\UserFingerprint;
+
+use Ganlv\UserFingerprint\Models\UserFingerprint;
+
 if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
 
-define('USER_FINGERPRINT_LOG_TABLE_NAME', 'user_fingerprint_log');
-define('USER_FINGERPRINT_IS_RETURN', false);
+require_once __DIR__ . '/Models/UserFingerprint.php';
+require_once __DIR__ . '/function/function_main.php';
 
-function user_fingerprint_clear_old_logs()
-{
-    global $_G;
-    $max_log_count = (int)$_G['cache']['plugin']['user_fingerprint']['max_log_count'];
-    if ($max_log_count <= 0) {
-        return null;
-    }
-    $table = DB::table(USER_FINGERPRINT_LOG_TABLE_NAME);
-    $log_count = DB::fetch_first("SELECT COUNT(*) AS `count` FROM `$table`");
-    $log_count = (int)$log_count['count'];
-    if ($log_count <= $max_log_count) {
-        return null;
-    }
-    $delete_ratio = (float)$_G['cache']['plugin']['user_fingerprint']['delete_ratio'];
-    if ($delete_ratio <= 0 || $delete_ratio > 0.5) {
-        $delete_ratio = 0.01;
-    }
-    $delete_log_count = (int)($log_count * $delete_ratio);
-    $limit = $log_count - $delete_log_count;
-    $delete_id = DB::fetch_first("SELECT `id` FROM `$table` ORDER BY `id` DESC LIMIT $limit, 1");
-    $delete_id = (int)$delete_id['id'];
-    $delete_id_quoted = DB::quote($delete_id);
-    return DB::delete(USER_FINGERPRINT_LOG_TABLE_NAME, "`id` <= $delete_id_quoted");
-}
-
-function user_fingerprint_log_insert()
+function main()
 {
     global $_G;
 
     if (!$_SERVER['HTTP_REFERER']) {
-        return [
-            'code' => 4,
-            'msg' => 'Empty referer.',
-        ];
+        return build_response(_('Empty referer.'), 1);
     }
 
     $url_components = parse_url($_SERVER['HTTP_REFERER']);
     if ($url_components['host'] !== $_SERVER['SERVER_NAME']) {
-        return [
-            'code' => 5,
-            'msg' => 'Invalid referer.',
-        ];
+        return build_response(_('Invalid referer.'), 2);
     }
 
     $uid = (int)$_G['uid'];
     if ($uid <= 0) {
-        return [
-            'code' => 1,
-            'msg' => 'User not login.',
-        ];
+        return build_response(_('User not login.'), 3);
     }
 
-    $sid = getcookie('sid');
-    $sid = (string)$sid;
+    $sid = (string)getcookie('sid');
     if (1 !== preg_match('/^[0-9A-Za-z]{6}$/', $sid)) {
-        return [
-            'code' => 2,
-            'msg' => 'No valid session id exists.',
-        ];
+        return build_response(_('No valid session id exists.'), 4);
     }
 
-    $fingerprint = getgpc('fingerprint');
-    $fingerprint = (string)$fingerprint;
+    $fingerprint = (string)getgpc('fingerprint');
     if (1 !== preg_match('/^[0-9a-f]{32}$/', $fingerprint)) {
-        return [
-            'code' => 3,
-            'msg' => 'Invalid fingerprint.',
-        ];
+        return build_response(_('Invalid fingerprint.'), 5);
     }
 
-    $table = DB::table(USER_FINGERPRINT_LOG_TABLE_NAME);
-    $uid_quoted = DB::quote($uid);
-    $sid_quoted = DB::quote($sid);
-    $fingerprint_quoted = DB::quote($fingerprint);
-    $record = DB::fetch_first("SELECT `id`, `hit` FROM `$table` WHERE `uid` = $uid_quoted AND `sid` = $sid_quoted AND `fingerprint` = $fingerprint_quoted LIMIT 1");
+    $table = new UserFingerprint;
+    $record = $table->fetchIdHitByUidSidFingerprint($uid, $sid, $fingerprint);
     if ($record) {
-        $record_id = (int)$record['id'];
-        $record_id_encoded = DB::quote($record_id);
-        $record_hit = (int)$record['hit'];
-        ++$record_hit;
-        DB::update(USER_FINGERPRINT_LOG_TABLE_NAME, [
-            'last_online_time' => TIMESTAMP,
-            'hit' => $record_hit,
-        ], "`id` = $record_id_encoded");
-        return [
-            'code' => 0,
-            'msg' => 'OK',
-            'data' => 'User record exists, last online time updated.',
-        ];
+        $table->touchById($record['id']);
+        return build_response(_('User record exists. Last online time updated.'));
     }
 
     $username = (string)$_G['username'];
     $ua = (string)$_SERVER['HTTP_USER_AGENT'];
     $ip = (string)$_G['clientip'];
-    DB::insert(USER_FINGERPRINT_LOG_TABLE_NAME, [
-        'fingerprint' => substr($fingerprint, 0, 32),
-        'sid' => substr($sid, 0, 6),
-        'uid' => $uid,
-        'username' => $username,
-        'ip' => ip2long($ip),
-        'ua' => substr($ua, 0, 1024),
-        'hit' => 1,
-        'created_at' => TIMESTAMP,
-        'last_online_time' => TIMESTAMP,
-    ]);
+    $table->insertData(compact('fingerprint', 'sid', 'uid', 'username', 'ip', 'ua'));
 
-    user_fingerprint_clear_old_logs();
+    delete_rotated();
 
-    return [
-        'code' => 0,
-        'msg' => 'OK',
-        'data' => 'User record inserted.',
-    ];
+    return build_response(_('User record inserted.'));
 }
 
-$user_fingerprint_result = user_fingerprint_log_insert();
-if (USER_FINGERPRINT_IS_RETURN) {
-    echo 'console.log(', json_encode($user_fingerprint_result), ');';
-}
+$result = main();
+header('Content-Type: text/javascript; charset=UTF-8');
+// if (DISCUZ_DEBUG) {
+    echo 'console.log(', json_encode($result), ');';
+// }

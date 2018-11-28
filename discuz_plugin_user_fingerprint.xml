@@ -14,7 +14,7 @@
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[user_fingerprint/]]></item>
 			<item id="copyright"><![CDATA[Ganlv (https://github.com/ganlvtech)]]></item>
-			<item id="version"><![CDATA[0.1.0.3]]></item>
+			<item id="version"><![CDATA[0.1.0.4]]></item>
 			<item id="__modules">
 				<item id="0">
 					<item id="name"><![CDATA[user_fingerprint]]></item>
@@ -43,9 +43,9 @@
 					<item id="navsuburl"><![CDATA[]]></item>
 				</item>
 				<item id="2">
-					<item id="name"><![CDATA[admin_sid]]></item>
+					<item id="name"><![CDATA[admin_fingerprint]]></item>
 					<item id="param"><![CDATA[]]></item>
-					<item id="menu"><![CDATA[Session ID]]></item>
+					<item id="menu"><![CDATA[指纹]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[3]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
@@ -56,9 +56,9 @@
 					<item id="navsuburl"><![CDATA[]]></item>
 				</item>
 				<item id="3">
-					<item id="name"><![CDATA[admin_fingerprint]]></item>
+					<item id="name"><![CDATA[admin_sid]]></item>
 					<item id="param"><![CDATA[]]></item>
-					<item id="menu"><![CDATA[用户指纹]]></item>
+					<item id="menu"><![CDATA[Session ID]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[3]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
@@ -102,6 +102,34 @@
 				<item id="type"><![CDATA[number]]></item>
 				<item id="value"><![CDATA[0.01]]></item>
 				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="Empty referer."><![CDATA[Referer 为空。]]></item>
+				<item id="Invalid referer."><![CDATA[无效 Referer。]]></item>
+				<item id="User not login."><![CDATA[用户未登录。]]></item>
+				<item id="No valid session id exists."><![CDATA[无有效的 Session ID 存在。]]></item>
+				<item id="Invalid fingerprint."><![CDATA[无效用户指纹。]]></item>
+				<item id="User record exists. Last online time updated."><![CDATA[用户记录已存在。已更新最后在线时间。]]></item>
+				<item id="User record inserted."><![CDATA[用户记录已插入。]]></item>
+				<item id="#"><![CDATA[#]]></item>
+				<item id="Fingerprint"><![CDATA[指纹]]></item>
+				<item id="Session ID"><![CDATA[会话 ID]]></item>
+				<item id="Count"><![CDATA[数量]]></item>
+				<item id="User ID"><![CDATA[用户 ID]]></item>
+				<item id="Username"><![CDATA[用户名]]></item>
+				<item id="IP"><![CDATA[IP]]></item>
+				<item id="User Agent"><![CDATA[User Agent]]></item>
+				<item id="Hit Count"><![CDATA[触发次数]]></item>
+				<item id="Created At"><![CDATA[创建时间]]></item>
+				<item id="Last Online Time"><![CDATA[最后在线时间]]></item>
+				<item id="Operation"><![CDATA[操作]]></item>
+				<item id="Find user"><![CDATA[查找用户]]></item>
+				<item id="User space"><![CDATA[用户空间]]></item>
+				<item id="Fingerprint Session Count Top"><![CDATA[同一指纹的会话数排行]]></item>
+				<item id="Session Fingerprint Count Top"><![CDATA[同一会话的指纹数排行]]></item>
+				<item id="User Log Count Top"><![CDATA[同一用户的记录数排行]]></item>
 			</item>
 		</item>
 		<item id="installfile"><![CDATA[install.php]]></item>
