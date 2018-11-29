@@ -131,7 +131,8 @@ function admin_show_table_row_content($row, $item)
         dhtmlspecialchars($row['hit']),
         dhtmlspecialchars(date('m-d H:i', $row['created_at'])),
         dhtmlspecialchars(date('m-d H:i', $row['last_online_time'])),
-        '<a target="_blank" rel="noopener" href="' . ADMINSCRIPT . '?frames=yes&action=members&operation=search&submit=1&uid=' . $row['uid'] . '">' . _('Find user') . '</a> '
-        . '<a target="_blank" rel="noopener" href="home.php?mod=space&uid=' . $row['uid'] . '">' . _('User space') . '</a>',
+        '<a target="_blank" rel="noopener" href="' . ADMINSCRIPT . '?frames=yes&action=members&operation=search&submit=1&uid=' . $row['uid'] . '">' . _('Find user') . '</a>'
+        . ' <a target="_blank" rel="noopener" href="home.php?mod=space&uid=' . $row['uid'] . '">' . _('User space') . '</a>'
+        . ' <a target="_blank" rel="noopener" href="' . ADMINSCRIPT . '?action=plugins&operation=config&identifier=user_fingerprint&pmod=admin_chart&uid=' . $row['uid'] . '">' . _('Visualization') . '</a>',
     ]);
 }

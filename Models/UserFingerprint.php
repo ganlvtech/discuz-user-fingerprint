@@ -253,4 +253,59 @@ class UserFingerprint extends discuz_table
         $delete_id_quoted = DB::quote($delete_id);
         return DB::delete($this->_table, "`id` <= $delete_id_quoted");
     }
+
+    public function findUserByFingerprintOrSid($fingerprint_array, $sid_array)
+    {
+        if (!$fingerprint_array || !$fingerprint_array) {
+            return [];
+        }
+        $fingerprint_in = implode(', ', DB::quote($fingerprint_array));
+        $sid_in = implode(', ', DB::quote($sid_array));
+        return DB::fetch_all("SELECT DISTINCT(`uid`), `username` FROM `{$this->prefixed_table}` WHERE `fingerprint` IN ({$fingerprint_in}) OR `sid` IN ({$sid_in})");
+    }
+
+    public function findRelatedUser($uid)
+    {
+        $records = DB::fetch_all("SELECT `fingerprint`, `sid` FROM `{$this->prefixed_table}` WHERE `uid` = {$uid}");
+        $fingerprint_array = [];
+        $sid_array = [];
+        foreach ($records as $row) {
+            $fingerprint_array[] = $row['fingerprint'];
+            $sid_array[] = $row['sid'];
+        }
+        $related_users = $this->findUserByFingerprintOrSid($fingerprint_array, $sid_array);
+        return [
+            'fingerprint_array' => $fingerprint_array,
+            'sid_array' => $sid_array,
+            'related_users' => $related_users,
+        ];
+    }
+
+    public function findMultiAccountUidArray($start = 0, $limit = 20)
+    {
+        $fingerprint_array = [];
+        $sid_array = [];
+        $records = DB::fetch_all("SELECT `fingerprint`, COUNT(DISTINCT(`uid`)) AS `count` FROM `pre_user_fingerprint_log` GROUP BY `fingerprint` ORDER BY `count` DESC LIMIT {$start}, {$limit}");;
+        foreach ($records as $row) {
+            if ((int)$row['count'] > 1) {
+                $fingerprint_array[] = $row['fingerprint'];
+            }
+        }
+        $records = DB::fetch_all("SELECT `sid`, COUNT(DISTINCT(`uid`)) AS `count` FROM `pre_user_fingerprint_log` GROUP BY `sid` ORDER BY `count` DESC LIMIT {$start}, {$limit}");
+        foreach ($records as $row) {
+            if ((int)$row['count'] > 1) {
+                $sid_array[] = $row['sid'];
+            }
+        }
+        return $this->findUserByFingerprintOrSid($fingerprint_array, $sid_array);
+    }
+
+    public function findUserByUid($uid_array)
+    {
+        if (!$uid_array) {
+            return [];
+        }
+        $in = implode(', ', DB::quote($uid_array));
+        return DB::fetch_all("SELECT DISTINCT(`uid`), `username` FROM `{$this->prefixed_table}` WHERE `uid` IN ({$in})");
+    }
 }
