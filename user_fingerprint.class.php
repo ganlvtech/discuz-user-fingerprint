@@ -8,6 +8,10 @@ class plugin_user_fingerprint
 {
     public static function global_footer()
     {
+        $sid = (string)getcookie('sid');
+        if (!$sid) {
+            dsetcookie('sid', random(6));
+        }
         return '<script src="source/plugin/user_fingerprint/js/bundle.min.js" async defer></script>';
     }
 }
