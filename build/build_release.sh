@@ -5,10 +5,13 @@ cd ../
 mkdir dist/
 mkdir dist/js/
 
+cp    LICENSE                             dist/
+cp    README.md                           dist/
 cp -r Models                              dist/
 cp -r "function"                          dist/
+cp    js/admin.min.js                     dist/js/
 cp    js/bundle.min.js                    dist/js/
-cp    README.md                           dist/
+cp    admin_chart.inc.php                 dist/
 cp    admin_fingerprint.inc.php           dist/
 cp    admin_sid.inc.php                   dist/
 cp    admin_user.inc.php                  dist/
