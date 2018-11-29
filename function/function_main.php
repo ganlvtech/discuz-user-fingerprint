@@ -32,6 +32,9 @@ function delete_rotated()
 
 function build_response($msg = 'OK', $code = 0, $data = null)
 {
+    if (CHARSET !== 'utf-8') {
+        $msg = iconv(CHARSET, 'utf-8', $msg);
+    }
     return [
         'code' => $code,
         'msg' => $msg,

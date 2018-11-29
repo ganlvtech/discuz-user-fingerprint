@@ -12,11 +12,13 @@ cp    README.md                           dist/
 cp    admin_fingerprint.inc.php           dist/
 cp    admin_sid.inc.php                   dist/
 cp    admin_user.inc.php                  dist/
-cp    discuz_plugin_user_fingerprint.xml  dist/
+cp    discuz_plugin_user_fingerprint.xml  dist/discuz_plugin_user_fingerprint_SC_UTF8.xml
 cp    install.php                         dist/
 cp    uninstall.php                       dist/
 cp    user_fingerprint.class.php          dist/
 cp    user_fingerprint.inc.php            dist/
+
+iconv -f utf-8 -t gbk dist/discuz_plugin_user_fingerprint_SC_UTF8.xml > dist/discuz_plugin_user_fingerprint_SC_GBK.xml
 
 zip dist.zip -r dist
 rm -rf dist/
