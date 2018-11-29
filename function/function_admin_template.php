@@ -18,21 +18,21 @@ function admin_render($type)
     switch ($type) {
         case 'fingerprint':
             showtableheader(_('Fingerprint Session Count Top'));
-            $counts = $table->fetchFingerprintSidCountDesc(admin_query_start());
+            $counts = $table->fetchFingerprintSidCountDesc(admin_query_start(), admin_per_page());
             $records = $table->fetchAllByFingerprint(array_keys($counts));
-            $count = $table->countFingerprint();
+            $paginator_count = $table->countFingerprint();
             break;
         case 'user':
             showtableheader(_('User Log Count Top'));
-            $counts = $table->fetchUserLogCountDesc(admin_query_start());
+            $counts = $table->fetchUserLogCountDesc(admin_query_start(), admin_per_page());
             $records = $table->fetchAllByUid(array_keys($counts));
-            $count = $table->countSid();
+            $paginator_count = $table->countUser();
             break;
         case 'sid':
             showtableheader(_('Session Fingerprint Count Top'));
-            $counts = $table->fetchSidFingerprintCountDesc(admin_query_start());
+            $counts = $table->fetchSidFingerprintCountDesc(admin_query_start(), admin_per_page());
             $records = $table->fetchAllBySid(array_keys($counts));
-            $count = $table->countUser();
+            $paginator_count = $table->countSid();
             break;
         default:
             return;
@@ -46,5 +46,5 @@ function admin_render($type)
         }
     }
     showtablefooter();
-    admin_show_paginator($count);
+    admin_show_paginator($paginator_count);
 }
