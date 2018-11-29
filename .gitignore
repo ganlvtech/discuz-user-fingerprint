@@ -1,3 +1,2 @@
 *.min.js
-dist/
-dist.zip
+*.zip

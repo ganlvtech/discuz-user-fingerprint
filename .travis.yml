@@ -15,7 +15,7 @@ script:
 deploy:
   - provider: releases
     api-key: $GITHUB_TOKEN
-    file: ./dist.zip
+    file: ./user_fingerprint.zip
     skip-cleanup: true
     on:
       tags: true

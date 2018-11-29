@@ -20,7 +20,8 @@ cp    user_fingerprint.inc.php            dist/
 
 iconv -f utf-8 -t gbk dist/discuz_plugin_user_fingerprint_SC_UTF8.xml > dist/discuz_plugin_user_fingerprint_SC_GBK.xml
 
-zip dist.zip -r dist
-rm -rf dist/
+mv dist user_fingerprint
+zip user_fingerprint.zip -r user_fingerprint
+rm -rf user_fingerprint/
 
 popd
