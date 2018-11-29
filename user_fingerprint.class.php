@@ -8,7 +8,7 @@ class plugin_user_fingerprint
 {
     public static function global_footer()
     {
-        return '<script src="/source/plugin/user_fingerprint/js/bundle.min.js" async defer></script>';
+        return '<script src="source/plugin/user_fingerprint/js/bundle.min.js" async defer></script>';
     }
 }
 
