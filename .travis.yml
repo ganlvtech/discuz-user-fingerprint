@@ -4,6 +4,7 @@ node_js:
 cache: npm
 branches:
   only:
+  - master
   - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 before_script:
   - npm install -g uglify-js

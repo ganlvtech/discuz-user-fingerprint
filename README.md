@@ -1,5 +1,7 @@
 # 用户指纹
 
+[![Build Status](https://travis-ci.org/ganlvtech/discuz-user-fingerprint.svg?branch=master)](https://travis-ci.org/ganlvtech/discuz-user-fingerprint)
+
 记录用户的指纹，如果多个账号拥有同一个指纹，很可能这些账号是由同一人使用（即马甲）。
 
 ## 原理
