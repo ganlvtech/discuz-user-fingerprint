@@ -47,8 +47,8 @@ function handle(data) {
             focusNodeAdjacency: true,
             force: {
                 initLayout: 'circular',
-                repulsion: 20,
-                edgeLength: 200,
+                repulsion: 400,
+                edgeLength: 100,
                 gravity: 0.1
             },
             label: {
