@@ -29,7 +29,8 @@ function main()
         return build_response(_('User not login.'), 3);
     }
 
-    $sid = (string)getcookie('sid');
+    $sid_name = config('sid_name', 'sid');
+    $sid = (string)(config('sid_keep') ? (isset($_COOKIE[$sid_name]) ? $_COOKIE[$sid_name] : NULL) : getcookie($sid_name));
     if (1 !== preg_match('/^[0-9A-Za-z]{6}$/', $sid)) {
         return build_response(_('No valid session id exists.'), 4);
     }
