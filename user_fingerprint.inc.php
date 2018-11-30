@@ -57,5 +57,5 @@ function main()
 }
 
 $result = main();
-header('Content-Type: text/javascript; charset=UTF-8');
-// echo 'console.log(', json_encode($result), ');';
+// header('Content-Type: text/javascript; charset=' . CHARSET);
+// echo 'console.log(', json_encode_with_charset($result), ');';

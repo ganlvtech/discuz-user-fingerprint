@@ -32,9 +32,6 @@ function delete_rotated()
 
 function build_response($msg = 'OK', $code = 0, $data = null)
 {
-    if (CHARSET !== 'utf-8') {
-        $msg = iconv(CHARSET, 'utf-8', $msg);
-    }
     return [
         'code' => $code,
         'msg' => $msg,
@@ -45,4 +42,23 @@ function build_response($msg = 'OK', $code = 0, $data = null)
 function _($str)
 {
     return lang('plugin/user_fingerprint', $str);
+}
+
+function convert_to_utf_8($data)
+{
+    if (CHARSET !== 'utf-8') {
+        if (is_string($data)) {
+            $data = iconv(CHARSET, 'utf-8', $data);
+        } elseif (is_array($data)) {
+            foreach ($data as &$item) {
+                $item = convert_to_utf_8($item);
+            }
+        }
+    }
+    return $data;
+}
+
+function json_encode_with_charset($data)
+{
+    return json_encode(convert_to_utf_8($data));
 }

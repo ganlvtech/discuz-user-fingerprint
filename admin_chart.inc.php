@@ -123,7 +123,7 @@ $data = [
 ];
 
 
-echo '<script>window.user_relation_data = ', json_encode($data), ';</script>';
+echo '<script>window.user_relation_data = ', json_encode_with_charset($data), ';</script>';
 
 echo <<<'EOD'
 <div class="echarts-container"><div id="chart"></div></div>
