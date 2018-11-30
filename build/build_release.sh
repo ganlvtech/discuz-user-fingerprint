@@ -13,6 +13,7 @@ cp    js/admin.min.js                     dist/js/
 cp    js/bundle.min.js                    dist/js/
 cp    admin_chart.inc.php                 dist/
 cp    admin_fingerprint.inc.php           dist/
+cp    admin_multi_account_user.inc.php    dist/
 cp    admin_sid.inc.php                   dist/
 cp    admin_user.inc.php                  dist/
 cp    discuz_plugin_user_fingerprint.xml  dist/discuz_plugin_user_fingerprint_SC_UTF8.xml
