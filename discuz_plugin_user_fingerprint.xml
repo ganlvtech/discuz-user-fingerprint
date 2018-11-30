@@ -129,6 +129,33 @@
 				<item id="value"><![CDATA[0.01]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[会话标识名称]]></item>
+				<item id="description"><![CDATA[默认为sid]]></item>
+				<item id="variable"><![CDATA[sid_name]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[sid]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[会话标识有效期]]></item>
+				<item id="description"><![CDATA[单位为秒，0为退出浏览器时失效]]></item>
+				<item id="variable"><![CDATA[sid_expire]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[保持会话标识]]></item>
+				<item id="description"><![CDATA[启用后，用户退出登录时，会话标识将继续保留]]></item>
+				<item id="variable"><![CDATA[sid_keep]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
 		</item>
 		<item id="language">
 			<item id="scriptlang">

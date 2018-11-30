@@ -15,7 +15,7 @@ function config($key = null, $default = null)
     global $_G;
     if (is_null($key)) {
         return $_G['cache']['plugin']['user_fingerprint'];
-    } elseif (isset($_G['cache']['plugin']['user_fingerprint'][$key])) {
+    } elseif (!empty($_G['cache']['plugin']['user_fingerprint'][$key])) {
         return $_G['cache']['plugin']['user_fingerprint'][$key];
     } else {
         return $default;
