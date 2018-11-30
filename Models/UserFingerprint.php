@@ -120,6 +120,9 @@ class UserFingerprint extends discuz_table
      */
     public function fetchAllBySid($sid_array)
     {
+        if (empty($sid_array)) {
+            return [];
+        }
         $result = [];
         $in = implode(', ', DB::quote($sid_array));
         $records = DB::fetch_all("SELECT * FROM `{$this->prefixed_table}` WHERE `sid` IN ({$in}) ORDER BY `id` ASC");
@@ -141,6 +144,9 @@ class UserFingerprint extends discuz_table
      */
     public function fetchAllByFingerprint($fingerprint_array)
     {
+        if (empty($fingerprint_array)) {
+            return [];
+        }
         $result = [];
         $in = implode(', ', DB::quote($fingerprint_array));
         $records = DB::fetch_all("SELECT * FROM `{$this->prefixed_table}` WHERE `fingerprint` IN ({$in}) ORDER BY `id` ASC");
@@ -162,6 +168,9 @@ class UserFingerprint extends discuz_table
      */
     public function fetchAllByUid($uid_array)
     {
+        if (empty($uid_array)) {
+            return [];
+        }
         $result = [];
         $in = implode(', ', DB::quote($uid_array));
         $records = DB::fetch_all("SELECT * FROM `{$this->prefixed_table}` WHERE `uid` IN ({$in}) ORDER BY `id` ASC");
@@ -256,18 +265,19 @@ class UserFingerprint extends discuz_table
 
     public function findUserByFingerprintOrSid($fingerprint_array, $sid_array)
     {
-        if (!$fingerprint_array && !$sid_array) {
+        if (empty($fingerprint_array) && empty($sid_array)) {
             return [];
         }
         $fingerprint_in = implode(', ', DB::quote($fingerprint_array));
         $sid_in = implode(', ', DB::quote($sid_array));
-        if ($fingerprint_in && $sid_in) {
-            return DB::fetch_all("SELECT DISTINCT(`uid`), `username` FROM `{$this->prefixed_table}` WHERE `fingerprint` IN ({$fingerprint_in}) OR `sid` IN ({$sid_in})");
-        } elseif ($fingerprint_in && !$sid_in) {
-            return DB::fetch_all("SELECT DISTINCT(`uid`), `username` FROM `{$this->prefixed_table}` WHERE `fingerprint` IN ({$fingerprint_in})");
-        } elseif (!$fingerprint_in && $sid_in) {
+        if (empty($fingerprint_in)) {
             return DB::fetch_all("SELECT DISTINCT(`uid`), `username` FROM `{$this->prefixed_table}` WHERE `sid` IN ({$sid_in})");
+        } elseif (empty($sid_in)) {
+            return DB::fetch_all("SELECT DISTINCT(`uid`), `username` FROM `{$this->prefixed_table}` WHERE `fingerprint` IN ({$fingerprint_in})");
+        } elseif ($fingerprint_in && $sid_in) {
+            return DB::fetch_all("SELECT DISTINCT(`uid`), `username` FROM `{$this->prefixed_table}` WHERE `fingerprint` IN ({$fingerprint_in}) OR `sid` IN ({$sid_in})");
         } else {
+            throw new \Exception('Should be unreachable');
             return [];
         }
     }
@@ -310,7 +320,7 @@ class UserFingerprint extends discuz_table
 
     public function findUserByUid($uid_array)
     {
-        if (!$uid_array) {
+        if (empty($uid_array)) {
             return [];
         }
         $in = implode(', ', DB::quote($uid_array));
