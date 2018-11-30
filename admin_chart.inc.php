@@ -32,7 +32,7 @@ $uid = (int)$_GET['uid'];
 if ($uid) {
     $uid_to_search = [$uid];
 } else {
-    $records = $table->findMultiAccountUidArray();
+    $records = $table->findMultiAccountUser();
     foreach ($records as $row) {
         $uid_to_search[] = (int)$row['uid'];
     }

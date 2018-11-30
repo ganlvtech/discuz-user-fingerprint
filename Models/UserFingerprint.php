@@ -299,7 +299,7 @@ class UserFingerprint extends discuz_table
         ];
     }
 
-    public function findMultiAccountUidArray($start = 0, $limit = 20)
+    public function findMultiAccountUser($start = 0, $limit = 20)
     {
         $fingerprint_array = [];
         $sid_array = [];

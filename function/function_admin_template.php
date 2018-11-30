@@ -34,6 +34,17 @@ function admin_render($type)
             $records = $table->fetchAllBySid(array_keys($counts));
             $paginator_count = $table->countSid();
             break;
+        case 'multi_account_user':
+            showtableheader(_('Multi Account User Top'));
+            $records = $table->findMultiAccountUser(admin_query_start(), admin_per_page());
+            $counts = [];
+            foreach ($records as $row) {
+                $row_uid = (int)$row['uid'];
+                $counts[$row_uid] = $row;
+            }
+            $records = $table->fetchAllByUid(array_keys($counts));
+            $paginator_count = $table->countUser();
+            break;
         default:
             return;
     }
