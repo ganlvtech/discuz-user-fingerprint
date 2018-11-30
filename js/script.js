@@ -19,5 +19,9 @@
         });
     }
 
-    setTimeout(fingerprintReport, 2000);
+    if (window.requestIdleCallback) {
+        requestIdleCallback(fingerprintReport);
+    } else {
+        setTimeout(fingerprintReport, 2000);
+    }
 }();
