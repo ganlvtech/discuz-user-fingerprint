@@ -90,7 +90,7 @@ function admin_show_table_row_title($item)
 {
     showtablerow('class="user-fingerprint-row-title"', [], dhtmlspecialchars([
         '-',
-        isset($item['fingerprint']) ? $item['fingerprint'] : '-',
+        isset($item['fingerprint']) ? substr($item['fingerprint'], 0, 10) : '-',
         isset($item['sid']) ? $item['sid'] : '-',
         $item['count'],
         isset($item['uid']) ? $item['uid'] : '-',
@@ -121,7 +121,7 @@ function admin_show_table_row_content($row, $item)
         '',
     ], [
         dhtmlspecialchars($row['id']),
-        dhtmlspecialchars(isset($item['fingerprint']) ? '-' : $row['fingerprint']),
+        dhtmlspecialchars(isset($item['fingerprint']) ? '-' : substr($row['fingerprint'], 0, 10)),
         dhtmlspecialchars(isset($item['sid']) ? '-' : $row['sid']),
         dhtmlspecialchars('-'),
         dhtmlspecialchars(isset($item['uid']) ? '-' : $row['uid']),
