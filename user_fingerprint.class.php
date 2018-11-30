@@ -12,7 +12,7 @@ class plugin_user_fingerprint
         if (empty($_G['uid'])) {
             return '';
         }
-        if (empty($_G['sid'])) {
+        if (!getcookie('sid')) {
             dsetcookie('sid', random(6));
         }
         return '<script src="source/plugin/user_fingerprint/js/bundle.min.js" async defer></script>';
