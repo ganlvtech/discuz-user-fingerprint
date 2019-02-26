@@ -13,6 +13,11 @@
     function fingerprintReport() {
         Fingerprint2.get(function (components) {
             var murmur = Fingerprint2.x64hash128(components.map(function (pair) {
+                if (pair.key === 'canvas') {
+                    if (pair.value instanceof Array) {
+                        pair.value.pop();
+                    }
+                }
                 return pair.value;
             }).join(), 31);
             send(murmur);
