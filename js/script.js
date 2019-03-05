@@ -4,29 +4,32 @@
  * License: GPL 3.0
  */
 !function () {
-    function send(murmur) {
+    function send(murmur, murmur2) {
         var scriptElement = document.createElement('script');
-        scriptElement.src = '/plugin.php?id=user_fingerprint&fingerprint=' + murmur;
+        scriptElement.src = '/plugin.php?id=user_fingerprint&fingerprint=' + murmur + '&fingerprint2=' + murmur2;
         document.getElementsByTagName('head')[0].appendChild(scriptElement);
     }
 
     function fingerprintReport() {
         Fingerprint2.get(function (components) {
             var murmur = Fingerprint2.x64hash128(components.map(function (pair) {
-                if (pair.key === 'canvas') {
-                    if (pair.value instanceof Array) {
-                        pair.value.pop();
-                    }
+                return pair.value;
+            }).join(), 31);
+            var murmur2 = Fingerprint2.x64hash128(components.map(function (pair) {
+                if (pair.key === 'canvas' || pair.key === 'webgl' || pair.key === 'webglVendorAndRenderer') {
+                    return '';
                 }
                 return pair.value;
             }).join(), 31);
-            send(murmur);
+            send(murmur, murmur2);
         });
     }
 
     if (window.requestIdleCallback) {
-        requestIdleCallback(fingerprintReport);
+        requestIdleCallback(function () {
+            setTimeout(fingerprintReport, 1000);
+        });
     } else {
-        setTimeout(fingerprintReport, 2000);
+        setTimeout(fingerprintReport, 3000);
     }
 }();
