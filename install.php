@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS `pre_user_fingerprint_relation` (
   `uid2` INT UNSIGNED NOT NULL COMMENT 'User ID 2',
   `username2` CHAR(15) NOT NULL COMMENT 'Username 2',
   `score` INT UNSIGNED NOT NULL COMMENT 'Relation level',
-  `data` TEXT NOT NULL COMMENT 'JSON encoded user data',
+  `data1` TEXT NOT NULL COMMENT 'JSON user data 1',
+  `data2` TEXT NOT NULL COMMENT 'JSON user data 2',
   PRIMARY KEY (`id`),
   UNIQUE (`uid1`, `uid2`)
 ) ENGINE = MyISAM;

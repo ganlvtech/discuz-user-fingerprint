@@ -67,23 +67,20 @@ function calcRelationAndInsert($uid, $username, $sid, $ua, $ua_md5, $fingerprint
                 'ua_md5' => $ua_md5,
             ], $relatedUser);
             if ($score > 1) {
-                $userRelation->insertData($uid, $username, $relatedUser['uid'], $relatedUser['username'], $score, json_encode([
-                    'user1' => [
-                        'uid' => $uid,
-                        'username' => $username,
-                        'sid' => $sid,
-                        'ua' => $ua,
-                        'ua_md5' => $ua_md5,
-                        'fingerprint' => $fingerprint,
-                        'fingerprint2' => $fingerprint2,
-                        'ip' => $ip,
-                        'ip2' => $ip2,
-                        'hit' => 1,
-                        'created_at' => TIMESTAMP,
-                        'last_online_time' => TIMESTAMP,
-                    ],
-                    'user2' => $relatedUser,
-                ]));
+                $userRelation->insertOrUpdateData($uid, $username, $relatedUser['uid'], $relatedUser['username'], $score, [
+                    'uid' => $uid,
+                    'username' => $username,
+                    'sid' => $sid,
+                    'ua' => $ua,
+                    'ua_md5' => $ua_md5,
+                    'fingerprint' => $fingerprint,
+                    'fingerprint2' => $fingerprint2,
+                    'ip' => $ip,
+                    'ip2' => $ip2,
+                    'hit' => 1,
+                    'created_at' => TIMESTAMP,
+                    'last_online_time' => TIMESTAMP,
+                ], $relatedUser);
             }
         }
         $userDataTable->insertData($uid, $username, $sid, $ua, $ua_md5, $fingerprint, $fingerprint2, $ip, $ip2);
@@ -141,5 +138,5 @@ function main()
 }
 
 $result = main();
-header('Content-Type: text/javascript; charset=' . CHARSET);
-echo 'console.log(', json_encode_with_charset($result), ');';
+// header('Content-Type: text/javascript; charset=' . CHARSET);
+// echo 'console.log(', json_encode_with_charset($result), ');';
