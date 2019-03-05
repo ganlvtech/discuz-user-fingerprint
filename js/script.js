@@ -4,9 +4,9 @@
  * License: GPL 3.0
  */
 !function () {
-    function send(murmur) {
+    function send(murmur, murmur2) {
         var scriptElement = document.createElement('script');
-        scriptElement.src = '/plugin.php?id=user_fingerprint&fingerprint=' + murmur + '&fingerprint2=' + murmur;
+        scriptElement.src = '/plugin.php?id=user_fingerprint&fingerprint=' + murmur + '&fingerprint2=' + murmur2;
         document.getElementsByTagName('head')[0].appendChild(scriptElement);
     }
 
@@ -27,9 +27,9 @@
 
     if (window.requestIdleCallback) {
         requestIdleCallback(function () {
-            setTimeout(fingerprintReport, 2000);
+            setTimeout(fingerprintReport, 1000);
         });
     } else {
-        setTimeout(fingerprintReport, 4000);
+        setTimeout(fingerprintReport, 3000);
     }
 }();
