@@ -7,5 +7,4 @@ if (!defined('IN_DISCUZ')) {
 $_GET['fingerprint'] = $_GET['a'];
 $_GET['fingerprint2'] = $_GET['b'];
 
-include libfile('user_fingerprint.inc', 'plugin/user_fingerprint');
-
+include __DIR__ . '/../user_fingerprint/user_fingerprint.inc.php';
