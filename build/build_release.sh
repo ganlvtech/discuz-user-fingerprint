@@ -20,7 +20,6 @@ mkdir -p dist/user_fingerprint/js/
 cp    LICENSE                             dist/
 cp    README.md                           dist/
 cp -r "function"                          dist/user_fingerprint/
-cp -r Libraries                           dist/user_fingerprint/
 cp -r Models                              dist/user_fingerprint/
 cp    discuz_plugin_user_fingerprint.xml  dist/user_fingerprint/discuz_plugin_user_fingerprint_SC_UTF8.xml
 cp    install.php                         dist/user_fingerprint/
@@ -47,6 +46,9 @@ iconv -f utf-8 -t gbk dist/a/discuz_plugin_a_SC_UTF8.xml > dist/a/discuz_plugin_
 
 sed -i "s/id=user_fingerprint\\&fingerprint=/id=a\\&a=/g" dist/a/index.min.js
 sed -i "s/\\&fingerprint2=/\\&b=/g" dist/a/index.min.js
+
+npm install -g uglify-js
+uglifyjs dist/a/index.min.js -o dist/a/index.min.js
 
 
 

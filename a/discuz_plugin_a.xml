@@ -10,11 +10,11 @@
 			<item id="adminid"><![CDATA[1]]></item>
 			<item id="name"><![CDATA[用户指纹识别代理]]></item>
 			<item id="identifier"><![CDATA[a]]></item>
-			<item id="description"><![CDATA[在用户指纹识别插件中把 js 路径设置 ]]></item>
+			<item id="description"><![CDATA[在用户指纹识别插件中把 js 路径设置为 /source/plugin/a/index.min.js]]></item>
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[a/]]></item>
 			<item id="copyright"><![CDATA[Ganlv (https://github.com/ganlvtech)]]></item>
-			<item id="version"><![CDATA[1.0.0.1]]></item>
+			<item id="version"><![CDATA[1.0.0.2]]></item>
 			<item id="__modules">
 				<item id="0">
 					<item id="name"><![CDATA[proxy]]></item>
