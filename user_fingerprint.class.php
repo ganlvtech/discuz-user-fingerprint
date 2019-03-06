@@ -1,12 +1,12 @@
 <?php
 
-use Ganlv\UserFingerprint\Libraries\Request;
+use function Ganlv\UserFingerprint\config;
 
 if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
 
-require_once __DIR__ . '/Libraries/Request.php';
+require_once __DIR__ . '/function/function_core.php';
 
 class plugin_user_fingerprint
 {
@@ -17,9 +17,9 @@ class plugin_user_fingerprint
             return '';
         }
 
-        $name = Request::config('sid_name', 'sid');
-        $keep = Request::config('sid_keep');
-        $expire = Request::config('sid_expire', 0);
+        $name = config('sid_name', 'sid');
+        $keep = config('sid_keep');
+        $expire = config('sid_expire', 0);
 
         $missing = $keep ? (!isset($_COOKIE[$name]) || !$_COOKIE[$name]) : !getcookie($name);
         if ($missing) {

@@ -62,8 +62,8 @@ class UserRelation extends discuz_table
      * @param int $uid2
      * @param string $username2
      * @param int $score
-     * @param array $data1
-     * @param array $data2
+     * @param string $data1
+     * @param string $data2
      *
      * @return mixed
      */
@@ -92,8 +92,8 @@ class UserRelation extends discuz_table
                     'uid2' => $uid2,
                     'username2' => $username2,
                     'score' => $score,
-                    'data1' => json_encode($data1),
-                    'data2' => json_encode($data2),
+                    'data1' => $data1,
+                    'data2' => $data2,
                 ], "`id` = {$id}");
             } else {
                 return 0;
@@ -105,8 +105,8 @@ class UserRelation extends discuz_table
                 'uid2' => $uid2,
                 'username2' => $username2,
                 'score' => $score,
-                'data1' => json_encode($data1),
-                'data2' => json_encode($data2),
+                'data1' => $data1,
+                'data2' => $data2,
             ]);
         }
     }
@@ -138,8 +138,6 @@ class UserRelation extends discuz_table
             $record['id'] = (int)$record['id'];
             $record['uid1'] = (int)$record['uid1'];
             $record['uid2'] = (int)$record['uid2'];
-            $record['data1'] = json_decode($record['data1'], true);
-            $record['data2'] = json_decode($record['data2'], true);
         }
         return $records;
     }

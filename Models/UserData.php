@@ -5,6 +5,10 @@ namespace Ganlv\UserFingerprint\Models;
 use DB;
 use discuz_table;
 
+if (!defined('IN_DISCUZ')) {
+    exit('Access Denied');
+}
+
 class UserData extends discuz_table
 {
     protected $prefixed_table = '';

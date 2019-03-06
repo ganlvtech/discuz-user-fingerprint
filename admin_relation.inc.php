@@ -8,12 +8,8 @@ if (!defined('IN_DISCUZ') || !defined('IN_ADMINCP')) {
     exit('Access Denied');
 }
 
+require_once __DIR__ . '/function/function_core.php';
 require_once __DIR__ . '/Models/UserRelation.php';
-
-function _($str)
-{
-    return lang('plugin/user_fingerprint', $str);
-}
 
 function admin_page($default = 1)
 {
@@ -59,11 +55,11 @@ function human_readable_text($data)
         . _('Fingerprint') . ": {$data['fingerprint']}\n"
         . _('Simplified Fingerprint') . ": {$data['fingerprint2']}\n"
         . _('IP') . ": {$data['ip']}\n"
-        . _('IP Geo Location') .": {$data['ip_geo']}\n"
+        . _('IP Geo Location') . ": {$data['ip_geo']}\n"
         . _('IP Masked') . ": {$data['ip2']}\n"
         . _('Hit') . ": {$data['hit']}\n"
         . _('Created At') . ": {$data['created_at']}\n"
-        . _('Last Online Time') .": {$data['last_online_time']}\n";
+        . _('Last Online Time') . ": {$data['last_online_time']}\n";
 }
 
 $page = admin_page();
@@ -85,6 +81,8 @@ showsubtitle([
 $userRelation = new UserRelation();
 $records = $userRelation->fetchAll($page, $per_page);
 foreach ($records as $row) {
+    $row['data1'] = unserialize($row['data1']);
+    $row['data2'] = unserialize($row['data2']);
     $data1 = human_readable_data($row['data1']);
     $data2 = human_readable_data($row['data2']);
     showtablerow('', [
