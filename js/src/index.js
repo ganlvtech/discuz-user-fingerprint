@@ -4,6 +4,8 @@
  * License: GPL 3.0
  */
 !function () {
+    var Fingerprint2 = require('fingerprintjs2');
+
     function send(murmur, murmur2) {
         var scriptElement = document.createElement('script');
         scriptElement.src = '/plugin.php?id=user_fingerprint&fingerprint=' + murmur + '&fingerprint2=' + murmur2;
