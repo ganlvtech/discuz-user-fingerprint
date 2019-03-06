@@ -7,7 +7,6 @@ branches:
   - master
   - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 before_script:
-  - npm install -g uglify-js
   - chmod u+x ./build/*
 script:
   - ./build/build_release.sh
