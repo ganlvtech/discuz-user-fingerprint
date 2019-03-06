@@ -17,7 +17,7 @@ function build_response($msg = 'OK', $code = 0, $data = null)
 
 function request_referer()
 {
-    return $_SERVER['HTTP_REFERER'];
+    return isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
 }
 
 function request_referer_host()
