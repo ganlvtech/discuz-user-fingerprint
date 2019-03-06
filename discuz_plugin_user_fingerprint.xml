@@ -14,7 +14,7 @@
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[user_fingerprint/]]></item>
 			<item id="copyright"><![CDATA[Ganlv (https://github.com/ganlvtech)]]></item>
-			<item id="version"><![CDATA[2.0.0.1]]></item>
+			<item id="version"><![CDATA[2.1.0.0]]></item>
 			<item id="__modules">
 				<item id="0">
 					<item id="name"><![CDATA[user_fingerprint]]></item>
@@ -102,6 +102,15 @@
 				<item id="variable"><![CDATA[sid_keep]]></item>
 				<item id="type"><![CDATA[radio]]></item>
 				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="5">
+				<item id="displayorder"><![CDATA[5]]></item>
+				<item id="title"><![CDATA[js 脚本路径]]></item>
+				<item id="description"><![CDATA[默认为 source/plugin/user_fingerprint/js/dist/index.min.js]]></item>
+				<item id="variable"><![CDATA[js_path]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[source/plugin/user_fingerprint/js/dist/index.min.js]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 		</item>

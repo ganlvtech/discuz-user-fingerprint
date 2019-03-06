@@ -10,12 +10,11 @@ before_script:
   - npm install -g uglify-js
   - chmod u+x ./build/*
 script:
-  - ./build/build_js.sh
   - ./build/build_release.sh
 deploy:
   - provider: releases
     api-key: $GITHUB_TOKEN
-    file: ./user_fingerprint.zip
+    file: ./dist.zip
     skip-cleanup: true
     on:
       tags: true

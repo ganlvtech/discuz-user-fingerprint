@@ -8,7 +8,7 @@
     "build": "webpack"
   },
   "author": "Ganlv",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "dependencies": {
     "fingerprintjs2": "^2.0.6"
   },
