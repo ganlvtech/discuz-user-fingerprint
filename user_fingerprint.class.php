@@ -14,7 +14,7 @@ class plugin_user_fingerprint
     {
         global $_G;
         if (empty($_G['uid'])) {
-            return '';
+            return;
         }
 
         $name = config('sid_name', 'sid');
