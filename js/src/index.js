@@ -27,10 +27,12 @@ function fingerprintReport() {
   });
 }
 
-if (window.requestIdleCallback) {
-  requestIdleCallback(function () {
-    setTimeout(fingerprintReport, 1000);
-  });
-} else {
-  setTimeout(fingerprintReport, 3000);
+if (typeof discuz_uid !== 'undefined' && discuz_uid > 0) {
+  if (window.requestIdleCallback) {
+    requestIdleCallback(function () {
+      setTimeout(fingerprintReport, 1000);
+    });
+  } else {
+    setTimeout(fingerprintReport, 3000);
+  }
 }
