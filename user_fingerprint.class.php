@@ -21,8 +21,8 @@ class plugin_user_fingerprint
         $keep = config('sid_keep');
         $expire = config('sid_expire', 0);
 
-		// Discuz! 在退出登录时会移除指定前缀开头的 Cookies
-		// 如果希望退出时保留 Cookies ($keep == true)，这里读写无前缀的 Cookies
+        // Discuz! 在退出登录时会移除指定前缀开头的 Cookies
+        // 如果希望退出时保留 Cookies ($keep == true)，这里读写无前缀的 Cookies
         $missing = $keep ? (!isset($_COOKIE[$name]) || !$_COOKIE[$name]) : !getcookie($name);
         if ($missing) {
             dsetcookie($name, random(6), $expire, !$keep);
