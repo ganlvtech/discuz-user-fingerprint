@@ -14,7 +14,7 @@ class plugin_user_fingerprint
     {
         global $_G;
         if (empty($_G['uid'])) {
-            return;
+            return '';
         }
 
         $name = config('sid_name', 'sid');
@@ -28,7 +28,7 @@ class plugin_user_fingerprint
             dsetcookie($name, random(6), $expire, !$keep);
         }
 
-        if (!config('js_path')) return;
+        if (!config('js_path')) return '';
         $js_path = config('js_path', 'source/plugin/user_fingerprint/js/dist/index.min.js');
         return '<script src="' . $js_path . '" async defer></script>';
     }
